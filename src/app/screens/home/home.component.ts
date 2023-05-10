@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit{
   getRecommendations(userId: string): void {
     this.appService.getRecommendations(userId).subscribe(movies => {
       this.recommendations = movies;
-      console.log(this.recommendations);
+      console.log(movies);
     });
   }
 }
