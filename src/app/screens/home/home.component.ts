@@ -5,6 +5,7 @@ import {AppService} from "../../services/app.service";
 import {environment} from "../../../environments/environment";
 import {Movie} from "../../models/movie";
 import { Recommendation } from 'src/app/models/recommendMovie';
+import {DefaultImage} from "../../shared/defaultConstants";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,9 @@ import { Recommendation } from 'src/app/models/recommendMovie';
 export class HomeComponent implements OnInit{
   movies?: Movie[];
   recommendations?: Recommendation[];
-  userId: string = "user10";
+  userId: string = "user20";
+  defaultImage = new DefaultImage().defaultImage;
+  invalidImage = new DefaultImage().invalidImage;
 
   constructor(private appService: AppService, private http: HttpClient) { }
 
