@@ -9,7 +9,7 @@ import { Recommendation } from '../models/recommendMovie';
   providedIn: 'root'
 })
 export class AppService {
-
+  
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Movie[]> {

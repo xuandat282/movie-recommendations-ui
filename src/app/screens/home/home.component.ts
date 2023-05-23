@@ -15,7 +15,7 @@ import {DefaultImage} from "../../shared/defaultConstants";
 export class HomeComponent implements OnInit{
   movies?: Movie[];
   recommendations?: Recommendation[];
-  userId: string = "user20";
+  userId: string = "user200";
   defaultImage = new DefaultImage().defaultImage;
   invalidImage = new DefaultImage().invalidImage;
 
