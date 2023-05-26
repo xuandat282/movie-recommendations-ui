@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Movie} from "../models/movie";
 import { Recommendation } from '../models/recommendMovie';
+import { CFRecommendation } from '../models/cf-recommend';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,15 @@ export class AppService {
     return this.http.get<Movie[]>(`${environment.apiUrl}/api/top/movie/top-n/10`);
   }
 
-  getRecommendations(userId: string): Observable<Recommendation[]> {
-    return this.http.get<Movie[]>(`${environment.apiUrl}/api/rec_engine/pagerank/${userId}/10`);
+  getPageRankRecommendations(userId: string, n: number): Observable<Recommendation[]> {
+    return this.http.get<Movie[]>(`${environment.apiUrl}/api/rec_engine/pagerank/${userId}/${n}`);
+  }
+
+  getCollaborativeRecommendationsByUser(userId: string, n: number): Observable<CFRecommendation[]> {
+    return this.http.get<CFRecommendation[]>(`${environment.apiUrl}/api/rec_engine/cf_gds_knn_user/${userId}/${n}`);
+  }
+
+  getCollaborativeRecommendationsByMovie(userId: string, n: number): Observable<CFRecommendation[]> {
+    return this.http.get<CFRecommendation[]>(`${environment.apiUrl}/api/rec_engine/cf_gds_knn_movie/${userId}/${n}`);
   }
 }
