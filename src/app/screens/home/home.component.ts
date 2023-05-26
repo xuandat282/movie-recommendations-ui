@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {Movie} from "../../models/movie";
 import { Recommendation } from 'src/app/models/recommendMovie';
 import {DefaultImage} from "../../shared/defaultConstants";
+import { CFRecommendation } from 'src/app/models/cf-recommend';
 
 @Component({
   selector: 'app-home',
@@ -13,17 +14,23 @@ import {DefaultImage} from "../../shared/defaultConstants";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+  limit: number = 10;
   movies?: Movie[];
-  recommendations?: Recommendation[];
-  userId: string = "user200";
+  pageRankRecommendations?: Recommendation[];
+  collaborativeRecommendationsByUser?: CFRecommendation[];
+  collaborativeRecommendationsByMoive?: CFRecommendation[];
+  userId: string = "user279";
+  movieId: string = "59315";
   defaultImage = new DefaultImage().defaultImage;
   invalidImage = new DefaultImage().invalidImage;
+  algorithms = ["PageRank", "Collaborative Filtering"]
 
   constructor(private appService: AppService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getProducts();
-    this.getRecommendations(this.userId);
+    this.getPageRankRecommendations(this.userId);
+    this.getCollaborativeRecommendationsByUser(this.userId);
+    this.getCollaborativeRecommendationsByMoive(this.movieId);
   }
 
   getProducts(): void {
@@ -32,9 +39,23 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  getRecommendations(userId: string): void {
-    this.appService.getRecommendations(userId).subscribe(movies => {
-      this.recommendations = movies;
+  getPageRankRecommendations(userId: string): void {
+    this.appService.getPageRankRecommendations(userId, 10).subscribe(movies => {
+      this.pageRankRecommendations = movies;
+      console.log(movies);
+    });
+  }
+
+  getCollaborativeRecommendationsByUser(userId: string): void {
+    this.appService.getCollaborativeRecommendationsByUser(userId, 10).subscribe(movies => {
+      this.collaborativeRecommendationsByUser = movies;
+      console.log(movies);
+    });
+  }
+
+  getCollaborativeRecommendationsByMoive(userId: string): void {
+    this.appService.getCollaborativeRecommendationsByMovie(userId, 10).subscribe(movies => {
+      this.collaborativeRecommendationsByMoive = movies;
       console.log(movies);
     });
   }
