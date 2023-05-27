@@ -1,35 +1,4 @@
 <div class="container">
-  <h1 class="text-center">PageRank Algorithm Recommendations</h1>
-  <h3>Top 10 PageRank Recommendations by {{userId}}</h3>
-  <form class="row g-3" (ngSubmit)="getPageRankRecommendations(userId)">
-    <div class="form-group col-auto">
-      <input type="text" class="form-control" id="userId" [(ngModel)]="userId" name="userId" required>
-    </div>
-    <div class="col-auto">
-      <button class="g-3 btn btn-primary" type="submit">SUGGEST</button>
-    </div>
-  </form>
-  <div class="card-body">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <!-- <th>poster</th> -->
-        <th>title</th>
-        <th>Score</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let rec of pageRankRecommendations">
-        <!-- <td>
-          <div *ngIf="rec.img === invalidImage; else elseBlock"><img src="{{defaultImage}}" alt="" width="80px"></div>
-          <ng-template #elseBlock><img src="{{rec.img}}" alt="" width="80px"></ng-template>
-        </td> -->
-        <td>{{rec.title}}</td>
-        <td>{{rec.score}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
 
   <h1 class="text-center">Collaborative Filtering Recommendations</h1>
   <h3>Top 10 Collaborative Filtering Recommendations based on User {{userId}}</h3>
@@ -62,7 +31,7 @@
     </table>
   </div>
 
-  <h3>Top 10 Collaborative Filtering Recommendations based on Movie {{movieId}}</h3>
+  <h3>Top 10 Collaborative Filtering Recommendations based on Movie</h3>
   <form class="row g-3" (ngSubmit)="getCollaborativeRecommendationsByMoive(movieId)">
     <div class="form-group col-auto">
       <input type="text" class="form-control" id="movieId" [(ngModel)]="movieId" name="movieId" required>
@@ -78,7 +47,7 @@
         <th>movieId</th>
         <th>movieTitle</th>
         <th>genres</th>
-        <th>score</th>
+        <th>KNN score</th>
       </tr>
       </thead>
       <tbody>
@@ -91,6 +60,43 @@
       </tbody>
     </table>
   </div>
+
+  <h1 class="text-center">PageRank Algorithm Recommendations</h1>
+  <h3>Top 10 PageRank Recommendations for movieId {{movieId}}</h3>
+  <form class="row g-3" (ngSubmit)="getPageRankRecommendations(movieId)">
+    <div class="form-group col-auto">
+      <input type="text" class="form-control" id="pageRankMovieId" [(ngModel)]="movieId" name="pageRankMovieId" required>
+    </div>
+    <div class="col-auto">
+      <button class="g-3 btn btn-primary" type="submit">SUGGEST</button>
+    </div>
+  </form>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <!-- <th>poster</th> -->
+        <th>movieId</th>
+        <th>movieTitle</th>
+        <th>genres</th>
+        <th>PageRank score</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let rec of pageRankRecommendations">
+        <!-- <td>
+          <div *ngIf="rec.img === invalidImage; else elseBlock"><img src="{{defaultImage}}" alt="" width="80px"></div>
+          <ng-template #elseBlock><img src="{{rec.img}}" alt="" width="80px"></ng-template>
+        </td> -->
+        <td>{{rec.movieId}}</td>
+        <td>{{rec.movieTitle}}</td>
+        <td>{{rec.genres}}</td>
+        <td>{{rec.score}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 
