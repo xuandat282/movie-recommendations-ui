@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h1 class="text-center">Collaborative Filtering Recommendations</h1>
+  <h1 class="text-center">Collaborative Filtering KNN Recommendations</h1>
   <h3>Top 10 Collaborative Filtering Recommendations based on User {{userId}}</h3>
   <form class="row g-3" (ngSubmit)="getCollaborativeRecommendationsByUser(userId)">
     <div class="form-group col-auto">
@@ -16,7 +16,6 @@
       <tr>
         <th>movieId</th>
         <th>movieTitle</th>
-        <th>genres</th>
         <th>similarUserIds</th>
       </tr>
       </thead>
@@ -24,7 +23,6 @@
       <tr *ngFor="let rec of collaborativeRecommendationsByUser">
         <td>{{rec.movieId}}</td>
         <td>{{rec.movieTitle}}</td>
-        <td>{{rec.genres}}</td>
         <td>{{rec.similarUserIds}}</td>
       </tr>
       </tbody>
@@ -46,7 +44,6 @@
       <tr>
         <th>movieId</th>
         <th>movieTitle</th>
-        <th>genres</th>
         <th>KNN score</th>
       </tr>
       </thead>
@@ -54,7 +51,6 @@
       <tr *ngFor="let rec of collaborativeRecommendationsByMoive">
         <td>{{rec.movieId}}</td>
         <td>{{rec.movieTitle}}</td>
-        <td>{{rec.genres}}</td>
         <td>{{rec.score}}</td>
       </tr>
       </tbody>
@@ -78,7 +74,6 @@
         <!-- <th>poster</th> -->
         <th>movieId</th>
         <th>movieTitle</th>
-        <th>genres</th>
         <th>PageRank score</th>
       </tr>
       </thead>
@@ -90,7 +85,6 @@
         </td> -->
         <td>{{rec.movieId}}</td>
         <td>{{rec.movieTitle}}</td>
-        <td>{{rec.genres}}</td>
         <td>{{rec.score}}</td>
       </tr>
       </tbody>
