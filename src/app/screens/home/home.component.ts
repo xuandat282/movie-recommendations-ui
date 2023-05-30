@@ -16,7 +16,7 @@ import { CFRecommendation } from 'src/app/models/cf-recommend';
 export class HomeComponent implements OnInit{
   limit: number = 10;
   movies?: Movie[];
-  pageRankRecommendations?: Recommendation[];
+  pageRankRecommendations?: CFRecommendation[];
   collaborativeRecommendationsByUser?: CFRecommendation[];
   collaborativeRecommendationsByMoive?: CFRecommendation[];
   userId: string = "user279";
@@ -28,9 +28,9 @@ export class HomeComponent implements OnInit{
   constructor(private appService: AppService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getPageRankRecommendations(this.userId);
     this.getCollaborativeRecommendationsByUser(this.userId);
     this.getCollaborativeRecommendationsByMoive(this.movieId);
+    this.getPageRankRecommendations(this.movieId);
   }
 
   getProducts(): void {
@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  getPageRankRecommendations(userId: string): void {
-    this.appService.getPageRankRecommendations(userId, 10).subscribe(movies => {
+  getPageRankRecommendations(movieId: string): void {
+    this.appService.getPageRankRecommendations(movieId, 10).subscribe(movies => {
       this.pageRankRecommendations = movies;
       console.log(movies);
     });
