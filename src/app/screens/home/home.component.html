@@ -16,21 +16,21 @@
       <tr>
         <th>movieId</th>
         <th>movieTitle</th>
-        <th>similarUserIds</th>
+<!--        <th>similarUserIds</th>-->
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let rec of collaborativeRecommendationsByUser">
         <td>{{rec.movieId}}</td>
         <td>{{rec.movieTitle}}</td>
-        <td>{{rec.similarUserIds}}</td>
+<!--        <td>{{rec.similarUserIds}}</td>-->
       </tr>
       </tbody>
     </table>
   </div>
 
   <h3>Top 10 Collaborative Filtering Recommendations based on Movie</h3>
-  <form class="row g-3" (ngSubmit)="getCollaborativeRecommendationsByMoive(movieId)">
+  <form class="row g-3" (ngSubmit)="getCollaborativeRecommendationsByMovie(movieId)">
     <div class="form-group col-auto">
       <input type="text" class="form-control" id="movieId" [(ngModel)]="movieId" name="movieId" required>
     </div>
@@ -48,7 +48,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let rec of collaborativeRecommendationsByMoive">
+      <tr *ngFor="let rec of collaborativeRecommendationsByMovie">
         <td>{{rec.movieId}}</td>
         <td>{{rec.movieTitle}}</td>
         <td>{{rec.score}}</td>

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit{
   movies?: Movie[];
   pageRankRecommendations?: CFRecommendation[];
   collaborativeRecommendationsByUser?: CFRecommendation[];
-  collaborativeRecommendationsByMoive?: CFRecommendation[];
+  collaborativeRecommendationsByMovie?: CFRecommendation[];
   userId: string = "user279";
   movieId: string = "59315";
   defaultImage = new DefaultImage().defaultImage;
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCollaborativeRecommendationsByUser(this.userId);
-    this.getCollaborativeRecommendationsByMoive(this.movieId);
+    this.getCollaborativeRecommendationsByMovie(this.movieId);
     this.getPageRankRecommendations(this.movieId);
   }
 
@@ -53,9 +53,9 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  getCollaborativeRecommendationsByMoive(userId: string): void {
+  getCollaborativeRecommendationsByMovie(userId: string): void {
     this.appService.getCollaborativeRecommendationsByMovie(userId, 10).subscribe(movies => {
-      this.collaborativeRecommendationsByMoive = movies;
+      this.collaborativeRecommendationsByMovie = movies;
       console.log(movies);
     });
   }
