@@ -17,8 +17,8 @@ export class AppService {
     return this.http.get<Movie[]>(`${environment.apiUrl}/api/top/movie/top-n/10`);
   }
 
-  getPageRankRecommendations(movieId: string, n: number): Observable<CFRecommendation[]> {
-    return this.http.get<CFRecommendation[]>(`${environment.apiUrl}/api/rec_engine/pagerank_collab/${movieId}/${n}`);
+  getPageRankRecommendations(userId: string, n: number): Observable<CFRecommendation[]> {
+    return this.http.get<CFRecommendation[]>(`${environment.apiUrl}/api/rec_engine/pagerank/${userId}/${n}`);
   }
 
   getCollaborativeRecommendationsByUser(userId: string, n: number): Observable<CFRecommendation[]> {

@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
 import {AppService} from "../../services/app.service";
-import {environment} from "../../../environments/environment";
 import {Movie} from "../../models/movie";
-import { Recommendation } from 'src/app/models/recommendMovie';
 import {DefaultImage} from "../../shared/defaultConstants";
 import { CFRecommendation } from 'src/app/models/cf-recommend';
 
@@ -19,7 +16,7 @@ export class HomeComponent implements OnInit{
   pageRankRecommendations?: CFRecommendation[];
   collaborativeRecommendationsByUser?: CFRecommendation[];
   collaborativeRecommendationsByMovie?: CFRecommendation[];
-  userId: string = "user279";
+  userId: string = "user179";
   movieId: string = "59315";
   defaultImage = new DefaultImage().defaultImage;
   invalidImage = new DefaultImage().invalidImage;
@@ -29,8 +26,8 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCollaborativeRecommendationsByUser(this.userId);
-    this.getCollaborativeRecommendationsByMovie(this.movieId);
-    this.getPageRankRecommendations(this.movieId);
+    // this.getCollaborativeRecommendationsByMovie(this.movieId);
+    this.getPageRankRecommendations(this.userId);
   }
 
   getProducts(): void {
@@ -39,8 +36,8 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  getPageRankRecommendations(movieId: string): void {
-    this.appService.getPageRankRecommendations(movieId, 10).subscribe(movies => {
+  getPageRankRecommendations(userId: string): void {
+    this.appService.getPageRankRecommendations(userId, 10).subscribe(movies => {
       this.pageRankRecommendations = movies;
       console.log(movies);
     });
