@@ -5,4 +5,5 @@ export class CFRecommendation {
   similarUserIds?: string[];
   userId?: string;
   score?: number;
+  pagerank?: number;
 }

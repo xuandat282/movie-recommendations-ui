@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AppService} from "../../services/app.service";
-import {Movie} from "../../models/movie";
 import {DefaultImage} from "../../shared/defaultConstants";
 import { CFRecommendation } from 'src/app/models/cf-recommend';
 
@@ -10,9 +9,9 @@ import { CFRecommendation } from 'src/app/models/cf-recommend';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   limit: number = 10;
-  movies?: Movie[];
+  movies?: CFRecommendation[];
   pageRankRecommendations?: CFRecommendation[];
   collaborativeRecommendationsByUser?: CFRecommendation[];
   collaborativeRecommendationsByMovie?: CFRecommendation[];
@@ -27,7 +26,11 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.getCollaborativeRecommendationsByUser(this.userId);
     // this.getCollaborativeRecommendationsByMovie(this.movieId);
-    this.getPageRankRecommendations(this.userId);
+    // this.getPageRankRecommendations(this.userId);
+  }
+
+  sortMoviesByPageRank(movies: any[]): any[] {
+    return movies.sort((a, b) => (a.pagerank < b.pagerank) ? 1 : -1);
   }
 
   getProducts(): void {
@@ -46,6 +49,7 @@ export class HomeComponent implements OnInit{
   getCollaborativeRecommendationsByUser(userId: string): void {
     this.appService.getCollaborativeRecommendationsByUser(userId, 10).subscribe(movies => {
       this.collaborativeRecommendationsByUser = movies;
+      this.pageRankRecommendations = this.sortMoviesByPageRank(movies);
       console.log(movies);
     });
   }
@@ -56,4 +60,6 @@ export class HomeComponent implements OnInit{
       console.log(movies);
     });
   }
+
+
 }
