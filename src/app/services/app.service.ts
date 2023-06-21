@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Movie} from "../models/movie";
-import { Recommendation } from '../models/recommendMovie';
 import { CFRecommendation } from '../models/cf-recommend';
 
 @Injectable({

@@ -1,45 +1,46 @@
 <div class="container">
-
   <div class="row">
     <div class="col">
       <h1 class="text-center">Collaborative Filtering KNN Recommendations</h1>
-  <h3>Top 10 Collaborative Filtering Recommendations based on User {{userId}}</h3>
-  <form class="row g-3" (ngSubmit)="getCollaborativeRecommendationsByUser(userId)">
-    <div class="form-group col-auto">
-      <input type="text" class="form-control" id="userId" [(ngModel)]="userId" name="userId" required>
     </div>
-    <div class="col-auto">
-      <button class="g-3 btn btn-primary" type="submit">SUGGEST</button>
+    <div class="col">
+      <h1 class="text-center">PageRank Algorithm Recommendations</h1>
     </div>
-  </form>
+  </div>
+  <div class="row">
+    <div class="col">
+      <form class="row g-3" (ngSubmit)="getCollaborativeRecommendationsByUser(userId)">
+        <div class="form-group col-auto">
+          <input type="text" class="form-control" id="userId" [(ngModel)]="userId" name="userId" required>
+        </div>
+        <div class="col-auto">
+          <button class="g-3 btn btn-primary" type="submit">SUGGEST</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
   <div class="card-body">
     <table class="table table-striped">
       <thead>
       <tr>
         <th>movieId</th>
         <th>movieTitle</th>
+        <th>PageRank score</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let rec of collaborativeRecommendationsByUser">
         <td>{{rec.movieId}}</td>
         <td>{{rec.movieTitle}}</td>
+        <td>{{rec.pagerank}}</td>
       </tr>
       </tbody>
     </table>
   </div>
     </div>
     <div class="col">
-      <h1 class="text-center">PageRank Algorithm Recommendations</h1>
-  <h3>Top 10 PageRank Recommendations based on User {{userId}}</h3>
-  <form class="row g-3" (ngSubmit)="getPageRankRecommendations(movieId)">
-    <div class="form-group col-auto">
-      <input type="text" class="form-control" id="pageRankMovieId" [(ngModel)]="userId" name="pageRankMovieId" required>
-    </div>
-    <div class="col-auto">
-      <button class="g-3 btn btn-primary" type="submit">SUGGEST</button>
-    </div>
-  </form>
   <div class="card-body">
     <table class="table table-striped">
       <thead>
@@ -53,44 +54,13 @@
       <tr *ngFor="let rec of pageRankRecommendations">
         <td>{{rec.movieId}}</td>
         <td>{{rec.movieTitle}}</td>
-        <td>{{rec.score}}</td>
+        <td>{{rec.pagerank}}</td>
       </tr>
       </tbody>
     </table>
   </div>
     </div>
   </div>
-
-
-
-  <!-- <h3>Top 10 Collaborative Filtering Recommendations based on Movie</h3>
-  <form class="row g-3" (ngSubmit)="getCollaborativeRecommendationsByMovie(movieId)">
-    <div class="form-group col-auto">
-      <input type="text" class="form-control" id="movieId" [(ngModel)]="movieId" name="movieId" required>
-    </div>
-    <div class="col-auto">
-      <button class="g-3 btn btn-primary" type="submit">SUGGEST</button>
-    </div>
-  </form>
-  <div class="card-body">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>movieId</th>
-        <th>movieTitle</th>
-        <th>KNN score</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let rec of collaborativeRecommendationsByMovie">
-        <td>{{rec.movieId}}</td>
-        <td>{{rec.movieTitle}}</td>
-        <td>{{rec.score}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div> -->
-
 
 
 </div>
